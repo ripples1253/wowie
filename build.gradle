@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'rip.osu.bancho'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.javalin:javalin:6.1.3'
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    implementation 'org.slf4j:slf4j-simple:2.0.10'
+    implementation 'org.mongodb:mongodb-driver-sync:5.1.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.1'
+}
+
+shadowJar {
+    archiveBaseName.set('wowie')
+    archiveClassifier.set('')
+    archiveVersion.set('0.1-alpha')
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'rip.osu.bancho.Main'
+        )
+    }
+}
